@@ -1,32 +1,35 @@
 Drop table users if exists;
 Drop table posts if exists;
 Drop table comments if exists;
+
 create table user (
-user_primaryPK int (10) not null auto_increment,
-first_name varchar (10) not null,
-last_name varchar (10) not null,
-username varchar (10) not null,
-email varchar (10) not null,
-password varchar (10) not null,
-PRIMARY KEY (user_primaryPK)
+  user_primaryPK int (10) not null auto_increment,
+  first_name varchar (10) not null,
+  last_name varchar (10) not null,
+  username varchar (10) not null,
+  email varchar (10) not null,
+  password varchar (10) not null,
+  PRIMARY KEY (user_primaryPK)
 );
+
 CREATE TABLE posts (
-Post_primaryPK int (10) not null,
-User_foreignFK int (10) not null auto_increment,
-Title varchar (100),
-Content text,
-Published_at timestamp,
-Type varchar (100),
-PRIMARY KEY (Post_primaryPK),
-FOREIGN KEY (User_foreignFK) REFERENCES user (user_primaryPK)
+  Post_primaryPK int (10) not null,
+  User_foreignFK int (10) not null auto_increment,
+  Title varchar (100),
+  Content text,
+  Published_at timestamp,
+  Type varchar (100),
+  PRIMARY KEY (Post_primaryPK),
+  FOREIGN KEY (User_foreignFK) REFERENCES user (user_primaryPK)
 );
+
 CREATE TABLE comments (
-Comments_primaryPK int (10) not null auto_increment,
-Posts_foreignFK int (10) not null,
-User_foreignFK int (10) not null,
-Comments varchar (500),
-Submitted_at timestamp,
-PRIMARY KEY (Comments_primaryPK),
-FOREIGN KEY (Posts_foreignFK) REFERENCES posts (Post_primaryPK),
-FOREIGN KEY (User_foreignFK) REFERENCES user (user_primaryPK)
+  Comments_primaryPK int (10) not null auto_increment,
+  Posts_foreignFK int (10) not null,
+  User_foreignFK int (10) not null,
+  Comments varchar (500),
+  Submitted_at timestamp,
+  PRIMARY KEY (Comments_primaryPK),
+  FOREIGN KEY (Posts_foreignFK) REFERENCES posts (Post_primaryPK),
+  FOREIGN KEY (User_foreignFK) REFERENCES user (user_primaryPK)
 );
